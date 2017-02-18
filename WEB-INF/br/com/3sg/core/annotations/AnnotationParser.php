@@ -23,7 +23,7 @@ abstract class AnnotationParser {
         }
         $map = [];
         $contents = [];
-        preg_match('/\\' . $matches[0] . '\(([^\.]+)\)/', $docComment, $contents);
+        preg_match('/\\' . $matches[0] . '\(([^\|]+)\)/', $docComment, $contents);
         if (!empty($contents)) {
             $content = $contents[0];
             foreach (AnnotationParser::buildArray($content) as $value) {
