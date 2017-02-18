@@ -3,7 +3,12 @@
 /**
  * Classe AnnotationController
  * 
- * @AuthenticatedSession('class' = 'loginSession', 'attribute'='userId', 'redirect'='admin')
+ * @AuthenticatedSession('class' = 'loginSession', 'attribute'='userId', 'redirect'='admin'),
+ * @Dependencies(
+ *      @Dependency('name' = 'file1', 'filepath' = '...'),
+ *      @Dependency('name' = 'file1', 'filepath' = '...'),
+ *      @Dependency('name' = 'file1', 'filepath' = '...')
+ * ),
  * @ManagedController
  */
 class AnnotationController {
@@ -15,6 +20,10 @@ class AnnotationController {
         $this->value = '1';
         $annotationObject = new AnnotationObject($this);
         $classAnnotations = $annotationObject->getClassAnnotations();
+
+
+        print_r($classAnnotations->toArray());
+        die();
         if ($classAnnotations->contains("@ManagedController")) {
             echo 'This class has the annotation @ManagedController';
         }
@@ -29,8 +38,10 @@ class AnnotationController {
         }
         $propertyAnnotatons = $annotationObject->getPropertyAnnotations('value');
         if ($propertyAnnotatons->contains("@Integer") && !is_integer($this->value)) {
-            die("Invalid Value!");
+            echo "Invalid Value!\n";
         }
+
+        print_r($classAnnotations->toArray());
     }
 
     /** @Produces("text/xml") */
