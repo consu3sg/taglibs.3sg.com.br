@@ -1,1 +1,1 @@
-# taglibs.3sg.com.br
+# core.3sg.com.br
